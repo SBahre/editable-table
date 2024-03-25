@@ -61,7 +61,7 @@ const ELEMENT_DATA: IPeriodicElement[] = [
   templateUrl: './v17-original.component.html',
   styleUrl: './v17-original.component.scss',
 })
-export class V17OriginalComponent {
+export class V17OriginalComponent implements OnInit {
   title = 'editable-table';
   displayedColumns: string[] = [
     'position',
