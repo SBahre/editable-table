@@ -111,10 +111,6 @@ export class AppComponent implements OnInit {
     this.dataSource.filterPredicate = (data: AbstractControl, filter) => {
       return filterPredicate.call(this.dataSource, data.value, filter);
     };
-
-    //Custom filter according to name column
-    // this.dataSource.filterPredicate = (data: {name: string}, filterValue: string) =>
-    //   data.name.trim().toLowerCase().indexOf(filterValue) !== -1;
   }
 
   goToPage() {
@@ -125,6 +121,7 @@ export class AppComponent implements OnInit {
       length: this.paginator.length,
     });
   }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.paginatorList = document.getElementsByClassName(
@@ -140,24 +137,22 @@ export class AppComponent implements OnInit {
   }
 
   applyFilter(event: Event) {
-    //  debugger;
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  // @ViewChild('table') table: MatTable<PeriodicElement>;
   AddNewRow() {
     const control = this.getFormArray();
     control.insert(0, this.initiateVOForm());
     this.dataSource = new MatTableDataSource(control.controls);
   }
 
-  // this function will enabled the select field for editd
+  /**this function will enabled the select field for editd */
   EditSVO(VOFormElement: any, i: number) {
     this.getEditableControl(i).patchValue(false);
   }
 
-  // On click of correct button in table (after click on edit) this method will call
+  /**On click of correct button in table (after click on edit) this method will call */
   SaveVO(VOFormElement: any, i: number) {
     this.getEditableControl(i).patchValue(true);
   }
