@@ -148,18 +148,18 @@ export class AppComponent implements OnInit {
   }
 
   /**this function will enabled the select field for editd */
-  EditSVO(VOFormElement: any, i: number) {
-    this.getEditableControl(i).patchValue(false);
+  EditSVO(index: number) {
+    this.getEditableControl(index).patchValue(false);
   }
 
   /**On click of correct button in table (after click on edit) this method will call */
-  SaveVO(VOFormElement: any, i: number) {
-    this.getEditableControl(i).patchValue(true);
+  SaveVO(index: number) {
+    this.getEditableControl(index).patchValue(true);
   }
 
   // On click of cancel button in the table (after click on edit) this method will call and reset the previous data
-  CancelSVO(VOFormElement: any, i: number) {
-    this.getEditableControl(i).patchValue(true);
+  CancelSVO(index: number) {
+    this.getEditableControl(index).patchValue(true);
   }
 
   onPaginateChange(paginator: MatPaginator, list: HTMLCollectionOf<Element>) {

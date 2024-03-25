@@ -29,7 +29,6 @@
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef>Name</th>
           <td mat-cell *matCellDef="let element; let i = index" [formGroup]="element">
-            <!-- <span [hidden]="VOForm.get('VORows').value[i].isEditable"> -->
             <mat-form-field style="width: 70px" [appearance]="getAppearance(i)">
               <input matInput type="text" formControlName="name"
                 [readonly]="VOForm.get('VORows')!.value[i].isEditable" />
@@ -42,8 +41,6 @@
         <ng-container matColumnDef="weight">
           <th mat-header-cell *matHeaderCellDef>Weight</th>
           <td mat-cell *matCellDef="let element; let i = index" [formGroup]="element">
-            <!-- [appearance]="true ? 'outline': 'fill'" -->
-            <!-- <span [hidden]="VOForm.get('VORows').value[i].isEditable"> -->
             <mat-form-field style="width: 70px" [appearance]="getAppearance(i)">
               <input matInput type="text" formControlName="weight"
                 [readonly]="VOForm.get('VORows')!.value[i].isEditable" />
@@ -56,7 +53,6 @@
         <ng-container matColumnDef="symbol">
           <th mat-header-cell *matHeaderCellDef>Symbol</th>
           <td mat-cell *matCellDef="let element; let i = index" [formGroup]="element">
-            <!-- <span [hidden]="VOForm.get('VORows').value[i].isEditable"> -->
             <mat-form-field style="width: 70px" [appearance]="getAppearance(i)">
               <input matInput type="text" formControlName="symbol"
                 [readonly]="VOForm.get('VORows')!.value[i].isEditable" />
@@ -69,18 +65,17 @@
           <th mat-header-cell *matHeaderCellDef>Action</th>
           <td mat-cell *matCellDef="let element; let i = index" [formGroup]="element">
             <button mat-icon-button class="material-icons app-toolbar-menu save-button" matTooltip="Save Changes"
-              (click)="SaveVO(VOForm,i)" *ngIf="!VOForm.get('VORows')?.value[i].isEditable" color="primary">
+              (click)="SaveVO(i)" *ngIf="!VOForm.get('VORows')?.value[i].isEditable" color="primary">
               <mat-icon>check_circle</mat-icon>
             </button>
 
             <button mat-icon-button class="material-icons app-toolbar-menu cancel-button" matTooltip="Cancel Changes"
-              color="warn" (click)="CancelSVO(VOForm,i)" *ngIf="!VOForm.get('VORows')?.value[i].isEditable">
+              color="warn" (click)="CancelSVO(i)" *ngIf="!VOForm.get('VORows')?.value[i].isEditable">
               <mat-icon>cancel</mat-icon>
             </button>
 
             <button mat-icon-button class="material-icons app-toolbar-menu save-button"
-              *ngIf="VOForm.get('VORows')?.value[i].isEditable" matTooltip="Edit" color="primary"
-              (click)="EditSVO(VOForm,i)">
+              *ngIf="VOForm.get('VORows')?.value[i].isEditable" matTooltip="Edit" color="primary" (click)="EditSVO(i)">
               <mat-icon>edit</mat-icon>
             </button>
 
@@ -108,8 +103,6 @@
     </mat-progress-spinner>
   </mat-card>
 
-  <!-- <mat-paginator-goto [length]="100" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
-		(page)="paginationChange($event)"></mat-paginator-goto> -->
   <mat-paginator [pageSizeOptions]="[5, dataSource.data.length>8? dataSource.data.length:10  ]" showFirstLastButtons>
   </mat-paginator>
 </div>
