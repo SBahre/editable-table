@@ -1,0 +1,29 @@
+<div>
+  <button mat-button (click)="onAddRow()">Add Row</button>
+</div>
+<div [formGroup]="tableForm">
+  <div formArrayName="tableRow">
+    <div *ngFor="let user of this.getFormArray()['controls'];let i=index" [formGroupName]="i">
+      <div>
+        <mat-form-field>
+          <input matInput type="text" placeholder="First Name" formControlName="firstName">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Last Name" formControlName="lastName">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Gender" formControlName="gender">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Email" formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Date of Birth" formControlName="birthDate">
+        </mat-form-field>
+        <button mat-raised-button (click)="onDeleteClick(i)">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
