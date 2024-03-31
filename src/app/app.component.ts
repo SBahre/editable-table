@@ -21,6 +21,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { V17OriginalComponent } from './v17-original/v17-original.component';
+import { TableReactiveComponent } from './table-reactive/table-reactive.component';
+import { ApiInlineReactiveComponent } from './api-inline-reactive/api-inline-reactive.component';
 
 export interface IPeriodicElement {
   name: string;
@@ -46,7 +48,11 @@ const ELEMENT_DATA: IPeriodicElement[] = [
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [V17OriginalComponent],
+  imports: [
+    V17OriginalComponent,
+    TableReactiveComponent,
+    ApiInlineReactiveComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
