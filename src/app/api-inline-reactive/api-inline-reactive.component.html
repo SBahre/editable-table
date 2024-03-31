@@ -1,7 +1,7 @@
-<div>
-  <button mat-button (click)="onAddRow()">Add Row</button>
+<div class="mb-3">
+  <button mat-raised-button (click)="onAddRow()">Add Row</button>
 </div>
-<div [formGroup]="tableForm">
+<!-- <div [formGroup]="tableForm">
   <div formArrayName="tableRow">
     <div *ngFor="let user of this.getFormArray()!['controls'];let i=index" [formGroupName]="i">
       <div>
@@ -26,15 +26,61 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
-<div>
-  <!-- <table mat-table [dataSource]="dataSource">
-    <ng-container>
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element">{{element}}</td>
+<mat-card class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="isSelected">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="selectAll($event)" [checked]="isAllSelected()"
+          [indeterminate]="!isAllSelected() && isAnySelected()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox (change)="element.isSelected = $event.checked" [checked]="element.isSelected">
+        </mat-checkbox>
+      </td>
     </ng-container>
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef>First Name</th>
+      <td mat-cell *matCellDef="let element">{{element.firstName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef>Last Name</th>
+      <td mat-cell *matCellDef="let element">{{element.lastName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef>Gender</th>
+      <td mat-cell *matCellDef="let row">{{row.gender}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let element">{{element.email}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="birthDate">
+      <th mat-header-cell *matHeaderCellDef>Birth Date</th>
+      <td mat-cell *matCellDef="let element">{{element.birthDate}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="isEdit">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button (click)="element.isEdit=!element.isEdit">Edit</button>
+        <button mat-button class="button-remove" (click)="removeRow(element.id)">
+          Delete
+        </button>
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <td mat-row *matRowDef="let row;columns :displayedColumns"></td>
-  </table> -->
-</div>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <hr>
+  <mat-paginator [length]="5" [pageSize]="10" showFirstLastButtons #tablePaginator></mat-paginator>
+
+</mat-card>
